@@ -18,6 +18,7 @@
       <button class="nav-btn" data-route="home" aria-current="page">Inicio</button>
       <button class="nav-btn" data-route="progreso">El Progreso</button>
       <button class="nav-btn" data-route="centros">Centros en Madrid</button>
+      <button class="nav-btn" data-route="comunidad">Comunidad</button>
     </nav>
     <div class="top-actions">
       <button id="themeToggle" aria-pressed="false" title="Cambiar tema">🌓</button>
@@ -35,7 +36,7 @@
       <div class="hero">
         <div class="hero-text">
           <h1 id="home-title">Respira, fluye y progresa</h1>
-          <p>Diseñada para una práctica <em>suave</em>, estética pastel y foco en tu bienestar. Elige un nivel, genera una rutina y síguela paso a paso.</p>
+          <p>Elige tu nivel, genera una rutina y síguela paso a paso. Diseño pastel, suave y femenino.</p>
           <div class="pill-group">
             <button class="pill" data-lvl="Principiante">Principiante</button>
             <button class="pill" data-lvl="Intermedio">Intermedio</button>
@@ -44,7 +45,7 @@
         </div>
         <div class="hero-card">
           <h3>Rutina sugerida</h3>
-          <p class="muted">Basada en tu nivel, con duración estimada y respiración guiada.</p>
+          <p class="muted">Duración estimada y respiración guiada.</p>
           <div id="routineBox" class="routine-box"></div>
           <div class="hero-actions">
             <button id="startFlow" class="primary">▶️ Comenzar sesión</button>
@@ -115,18 +116,57 @@
       </section>
     </section>
 
-    <!-- CENTROS EN MADRID -->
+    <!-- CENTROS EN MADRID (API externa OSM) -->
     <section data-view="centros" class="view" aria-labelledby="centros-title">
       <header class="section-hd">
         <h2 id="centros-title">Centros de Pilates en Madrid</h2>
-        <p class="muted">Estudios reales con enlace a su web oficial. Haz clic para consultar horarios y direcciones.</p>
+        <p class="muted">Datos en tiempo real desde OpenStreetMap (Overpass). Busca por nombre o barrio.</p>
         <div class="filter-inline">
           <input id="centerSearch" class="input" type="search" placeholder="Buscar por nombre o barrio…" />
         </div>
       </header>
 
       <div id="centrosGrid" class="grid three"></div>
-      <small class="muted">La selección incluye estudios como Nature Pilates (Centro), Pilates Zentro (Barrio Salamanca), PilatesLab (Chamberí), Temple Pilates (Gran Vía 17A) y otros. Consulta cada web para ubicación exacta y reservas.</small>
+      <div id="centersStatus" class="muted" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- COMUNIDAD (API propia mock) -->
+    <section data-view="comunidad" class="view" aria-labelledby="comu-title">
+      <header class="section-hd">
+        <h2 id="comu-title">Comunidad — Consejos y reseñas</h2>
+        <p class="muted">Publica tu consejo o reseña de Pilates. Se guarda en tu <strong>API propia</strong> (json-server).</p>
+      </header>
+
+      <form id="postForm" class="card form-grid" autocomplete="off" aria-label="Publicar consejo">
+        <input type="text" id="postAuthor" placeholder="Tu nombre" required />
+        <input type="text" id="postTitle" placeholder="Título (p. ej. Estirar gemelos después)" required />
+        <select id="postTag" required>
+          <option value="" disabled selected>Etiqueta</option>
+          <option>Consejo</option>
+          <option>Reseña</option>
+          <option>Material</option>
+        </select>
+        <input type="url" id="postLink" placeholder="Enlace útil (opcional)" />
+        <input type="number" id="postRating" min="1" max="5" step="1" placeholder="★ rating 1–5 (opcional)" />
+        <input type="text" id="postText" placeholder="Escribe tu consejo o reseña..." required />
+        <button class="primary" type="submit">📤 Publicar</button>
+      </form>
+
+      <section class="grid two">
+        <div class="card">
+          <h3>Publicaciones recientes</h3>
+          <ul id="postsList" class="log-list" role="list"></ul>
+        </div>
+        <div class="card">
+          <h3>Cómo ejecutar tu API</h3>
+          <ol class="muted">
+            <li>Instala json-server: <code>npm i -g json-server</code></li>
+            <li>Coloca <code>db.json</code> junto a estos archivos.</li>
+            <li>Ejecuta: <code>json-server --watch db.json --port 5173</code></li>
+            <li>La API estará en: <code>http://localhost:5173</code> (endpoint: <code>/posts</code>)</li>
+          </ol>
+        </div>
+      </section>
     </section>
   </main>
 
