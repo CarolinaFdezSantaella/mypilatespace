@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilates Suave — Sesiones, Progreso y Centros en Madrid</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🌸</span>
+      <strong>Pilates Suave</strong>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn" data-route="home" aria-current="page">Inicio</button>
+      <button class="nav-btn" data-route="progreso">El Progreso</button>
+      <button class="nav-btn" data-route="centros">Centros en Madrid</button>
+    </nav>
+    <div class="top-actions">
+      <button id="themeToggle" aria-pressed="false" title="Cambiar tema">🌓</button>
+      <button id="exportData" title="Exportar mis datos">⬇️ Exportar</button>
+      <label class="import-label" title="Importar datos (JSON)">
+        ⬆️ Importar
+        <input id="importData" type="file" accept="application/json" />
+      </label>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- HOME / SESIÓN -->
+    <section data-view="home" class="view active" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-text">
+          <h1 id="home-title">Respira, fluye y progresa</h1>
+          <p>Diseñada para una práctica <em>suave</em>, estética pastel y foco en tu bienestar. Elige un nivel, genera una rutina y síguela paso a paso.</p>
+          <div class="pill-group">
+            <button class="pill" data-lvl="Principiante">Principiante</button>
+            <button class="pill" data-lvl="Intermedio">Intermedio</button>
+            <button class="pill" data-lvl="Avanzado">Avanzado</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Rutina sugerida</h3>
+          <p class="muted">Basada en tu nivel, con duración estimada y respiración guiada.</p>
+          <div id="routineBox" class="routine-box"></div>
+          <div class="hero-actions">
+            <button id="startFlow" class="primary">▶️ Comenzar sesión</button>
+            <button id="saveRoutine" class="ghost">💾 Guardar como favorita</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow" aria-live="polite">
+        <div class="flow-header">
+          <h3 id="flow-title">Sesión</h3>
+          <div class="flow-meta"><span id="flow-level">—</span> • <span id="flow-duration">0 min</span></div>
+        </div>
+        <div id="flow-steps" class="flow-steps"></div>
+        <div class="flow-controls">
+          <button id="prevStep" class="soft" disabled>⟵ Anterior</button>
+          <button id="playPause" class="primary" disabled>▶️ Iniciar</button>
+          <button id="nextStep" class="soft" disabled>Siguiente ⟶</button>
+          <span id="stepTimer" class="timer">00:00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRESO -->
+    <section data-view="progreso" class="view" aria-labelledby="prog-title">
+      <header class="section-hd">
+        <h2 id="prog-title">Tu progreso</h2>
+        <p class="muted">Registra cada sesión y observa tu evolución semanal.</p>
+      </header>
+
+      <form id="logForm" class="card form-grid" autocomplete="off" aria-label="Añadir progreso">
+        <input type="date" id="logDate" required />
+        <input type="number" id="logMinutes" min="5" max="180" step="5" placeholder="Minutos (ej. 35)" required />
+        <select id="logIntensity" required>
+          <option value="" disabled selected>Intensidad</option>
+          <option>Suave</option>
+          <option>Media</option>
+          <option>Intensa</option>
+        </select>
+        <select id="logMood" required>
+          <option value="" disabled selected>Ánimo</option>
+          <option>Tranquila</option>
+          <option>Con energía</option>
+          <option>Cansada</option>
+        </select>
+        <input type="text" id="logNotes" placeholder="Notas (opcional)" />
+        <button class="primary" type="submit">➕ Añadir</button>
+      </form>
+
+      <section class="stats">
+        <canvas id="minutesChart" width="1000" height="240" aria-label="Minutos por día (últimos 7 días)"></canvas>
+        <div class="chips">
+          <span class="chip">Total mes: <strong id="totalMonth">0</strong> min</span>
+          <span class="chip">Sesiones esta semana: <strong id="weekCount">0</strong></span>
+          <span class="chip">Racha: <strong id="streak">0</strong> días</span>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <div class="card">
+          <h3>Registro reciente</h3>
+          <ul id="logList" class="log-list" role="list"></ul>
+        </div>
+        <div class="card">
+          <h3>Favoritas</h3>
+          <ul id="favList" class="fav-list" role="list"></ul>
+        </div>
+      </section>
+    </section>
+
+    <!-- CENTROS EN MADRID -->
+    <section data-view="centros" class="view" aria-labelledby="centros-title">
+      <header class="section-hd">
+        <h2 id="centros-title">Centros de Pilates en Madrid</h2>
+        <p class="muted">Estudios reales con enlace a su web oficial. Haz clic para consultar horarios y direcciones.</p>
+        <div class="filter-inline">
+          <input id="centerSearch" class="input" type="search" placeholder="Buscar por nombre o barrio…" />
+        </div>
+      </header>
+
+      <div id="centrosGrid" class="grid three"></div>
+      <small class="muted">La selección incluye estudios como Nature Pilates (Centro), Pilates Zentro (Barrio Salamanca), PilatesLab (Chamberí), Temple Pilates (Gran Vía 17A) y otros. Consulta cada web para ubicación exacta y reservas.</small>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Hecho con calma y cariño • Pilates Suave</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
