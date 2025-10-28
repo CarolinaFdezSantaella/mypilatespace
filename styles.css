@@ -88,7 +88,7 @@ body{
   background:var(--card); border:1px solid var(--line);
   border-radius: var(--radius); box-shadow: var(--shadow); padding:16px;
 }
-.form-grid{display:grid; grid-template-columns: repeat(5, 1fr) auto; gap:10px}
+.form-grid{display:grid; grid-template-columns: repeat(6, 1fr); gap:10px}
 .input{border:1px solid var(--line); border-radius:12px; padding:10px 12px; background:#fff}
 
 .stats{margin:18px 0}
@@ -123,13 +123,13 @@ body{
   .hero{grid-template-columns: 1fr}
   .grid.two{grid-template-columns:1fr}
   .grid.three{grid-template-columns:1fr 1fr}
-  .form-grid{grid-template-columns:1fr 1fr 1fr 1fr; grid-auto-rows:auto}
+  .form-grid{grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr; grid-auto-rows:auto}
 }
 @media (max-width: 640px){
   .grid.three{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr 1fr}
 }
-  
+
 /* Tema oscuro opcional */
 body.dark{
   --bg:#2a2230; --card:#352b3a; --ink:#f9f5f7; --muted:#cdbec8; --primary:#8e6b82; --primary-2:#5f7a6b; --accent:#6d5a8d; --line:#4a3e4b;
