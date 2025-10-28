@@ -1,0 +1,138 @@
+:root{
+  /* Pastel femeninos */
+  --bg:#fff8fb;
+  --card:#ffffff;
+  --ink:#44343f;
+  --muted:#8e7a86;
+  --primary:#eebfd1; /* rosa palo */
+  --primary-2:#d3e8d8; /* verde menta suave */
+  --accent:#dccdf1;   /* lila suave */
+  --line:#f0e6ee;
+  --good:#a5d6a7;
+  --warn:#ffd59e;
+
+  --radius:16px;
+  --shadow:0 10px 30px rgba(139, 111, 127, .12);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background: radial-gradient(1200px 600px at 10% -10%, #ffe9f3, transparent), var(--bg);
+  color:var(--ink); font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  line-height:1.4;
+}
+
+.topbar{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:12px 16px; background:rgba(255,255,255,.75); backdrop-filter: blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; gap:8px; font-weight:700}
+.logo{font-size:22px}
+.nav{display:flex; gap:8px; flex-wrap:wrap}
+.nav-btn{
+  border:1px solid var(--line); background:var(--card); padding:8px 12px; border-radius:999px; cursor:pointer;
+}
+.nav-btn[aria-current="page"]{background: var(--primary); border-color: transparent}
+.top-actions{display:flex; gap:8px; align-items:center}
+.top-actions button,.import-label{
+  border:1px solid var(--line); background:var(--card); padding:8px 12px; border-radius:999px; cursor:pointer;
+}
+.import-label{display:inline-flex; gap:8px; align-items:center}
+.import-label input{display:none}
+
+.view{display:none; padding:20px; max-width:1100px; margin:0 auto}
+.view.active{display:block}
+
+.hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:stretch}
+.hero-text{
+  background: linear-gradient(180deg, var(--card), #fff); border:1px solid var(--line);
+  border-radius: var(--radius); padding:20px; box-shadow: var(--shadow);
+}
+.hero-text h1{margin:0 0 6px; font-size: clamp(22px, 3vw, 32px)}
+.pill-group{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.pill{
+  border:1px solid var(--line); background: var(--accent); padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:600;
+}
+.pill:hover{filter: saturate(1.1)}
+
+.hero-card{
+  background: linear-gradient(180deg, var(--card), #fff); border:1px solid var(--line);
+  border-radius: var(--radius); padding:16px; box-shadow: var(--shadow);
+}
+.routine-box{display:grid; gap:8px; margin:12px 0}
+.routine-item{
+  background: var(--primary-2); border:1px dashed #bfd7c3; padding:10px 12px; border-radius:12px;
+  display:grid; grid-template-columns: 1fr auto; align-items:center; gap:8px
+}
+.badge{font-size:12px; padding:4px 8px; border-radius:999px; background:#fff; border:1px solid var(--line)}
+
+.hero-actions{display:flex; gap:8px}
+.primary{background: var(--primary); border:none; border-radius:12px; padding:10px 14px; cursor:pointer; font-weight:700}
+.ghost{background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 14px; cursor:pointer}
+
+.flow{margin-top:18px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow: var(--shadow)}
+.flow-header{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid var(--line)}
+.flow-steps{display:grid; gap:8px; padding:16px}
+.flow-step{border:1px solid var(--line); border-radius:12px; padding:12px; display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center}
+.flow-step.active{border-color:#a7c4ff; background:#f6f9ff}
+.flow-controls{display:flex; align-items:center; gap:8px; padding:12px 16px; border-top:1px solid var(--line)}
+.timer{margin-left:auto; font-variant-numeric: tabular-nums}
+
+.section-hd{margin:0 0 14px}
+.muted{color:var(--muted)}
+
+.card{
+  background:var(--card); border:1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding:16px;
+}
+.form-grid{display:grid; grid-template-columns: repeat(5, 1fr) auto; gap:10px}
+.input{border:1px solid var(--line); border-radius:12px; padding:10px 12px; background:#fff}
+
+.stats{margin:18px 0}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{background:#fff; border:1px solid var(--line); border-radius:999px; padding:6px 10px}
+.grid{display:grid; gap:12px}
+.grid.two{grid-template-columns: 1fr 1fr}
+.grid.three{grid-template-columns: repeat(3, 1fr)}
+.log-list,.fav-list{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.log-item{
+  display:grid; grid-template-columns: auto 1fr auto; gap:12px; align-items:center;
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px 12px;
+}
+.tag{font-size:12px; background: var(--accent); border-radius:999px; padding:4px 8px; border:1px solid var(--line)}
+.tag.good{background: var(--good); border-color:#8ccf8e}
+.tag.warn{background: var(--warn); border-color:#f2c98b}
+.item-actions{display:flex; gap:6px}
+.icon-btn{border:1px solid var(--line); background:#fff; padding:6px 8px; border-radius:10px; cursor:pointer}
+
+.filter-inline{display:flex; gap:8px}
+.center-card{
+  background: linear-gradient(180deg, #ffffff, #fff); border:1px solid var(--line);
+  border-radius: 18px; padding:14px; box-shadow: var(--shadow); display:grid; gap:4px
+}
+.center-card small{color:var(--muted)}
+.center-link{color:#6a4c68; text-decoration:none; font-weight:600}
+.center-link:hover{text-decoration:underline}
+
+.footer{padding:18px; text-align:center; color:var(--muted)}
+
+@media (max-width: 980px){
+  .hero{grid-template-columns: 1fr}
+  .grid.two{grid-template-columns:1fr}
+  .grid.three{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr 1fr 1fr 1fr; grid-auto-rows:auto}
+}
+@media (max-width: 640px){
+  .grid.three{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr 1fr}
+}
+  
+/* Tema oscuro opcional */
+body.dark{
+  --bg:#2a2230; --card:#352b3a; --ink:#f9f5f7; --muted:#cdbec8; --primary:#8e6b82; --primary-2:#5f7a6b; --accent:#6d5a8d; --line:#4a3e4b;
+  background: radial-gradient(1200px 600px at 10% -10%, #3a3040, transparent), var(--bg);
+}
+body.dark .nav-btn[aria-current="page"]{color:#fff}
