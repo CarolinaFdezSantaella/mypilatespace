@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "author": "Admin",
+      "title": "Bienvenida a la comunidad 💕",
+      "tag": "Consejo",
+      "link": "",
+      "rating": 5,
+      "text": "Comparte tus mejores tips de respiración y alineación.",
+      "createdAt": 1700000000000
+    }
+  ]
+}
